@@ -20,6 +20,10 @@ gulp.task('watch', function() {
     gulp.start('cssInject');
   });
 
+  watch('./app/assets/scripts/**/*.js', function() {
+  	gulp.start('scriptsRefresh');
+  })
+
 });
 
 
@@ -28,3 +32,6 @@ gulp.task('cssInject', ['styles'], function(){ //cssInject would not begin until
 	.pipe(browserSync.stream()); //then we pipe it to browserSync
 });
 
+gulp.task('scriptsRefresh', ['scripts'], function() {
+	browserSync.reload();
+});
